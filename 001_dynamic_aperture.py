@@ -1,14 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import nafflib
-import rich.progress
-import itertools
 import argparse
 import pendulum
 import pandas as pd
+
 from xaux import ProtectFile
-import xtrack as xt
-import xobjects as xo
+
 import xPIV
 import piv_filemanager as pfm
 import pathlib
