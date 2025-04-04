@@ -82,10 +82,7 @@ new_row = {'x_DA' : x_grid_da, 'DA' : da, 'DA_area' : da_area,
              }
 
 with ProtectFile(fname, 'r+', wait=1) as pf:
-    if not fname.exists():
-        df = pd.DataFrame(columns=new_row.keys())
-    else:
-        df = pd.read_parquet(fname)
+    df = pd.read_parquet(fname)
     df.loc[len(df)] = new_row.values()
     df.to_parquet(fname)
 
