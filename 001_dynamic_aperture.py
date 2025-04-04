@@ -20,13 +20,14 @@ plt.close('all')
 parser = argparse.ArgumentParser()
 parser.add_argument('--order', nargs='?', type=int, default=None)
 parser.add_argument('--KL', nargs='?', type=float, default=0)
+parser.add_argument('--folder', nargs='?', type=str, default='./')
 parser.add_argument('--skew', action='store_true')
 parser.add_argument('--plot', action='store_true')
 args = parser.parse_args()
 
 version='4.3.1'
 kstr = 'ksl' if args.skew else 'knl'
-fname = pathlib.Path(f'PDCseptum_multipole_DA_MA_{kstr}{args.order}.parquet')
+fname = pathlib.Path(args.folder) / pathlib.Path(f'PDCseptum_multipole_DA_MA_{kstr}{args.order}.parquet')
 rms_dk1 = 1e-3
 delta = 0.5e-2
 
@@ -36,7 +37,7 @@ dy = 0.3
 y_max = 4
 ddelta = 0.5e-2
 delta_max = 6e-2
-n_turns = 100
+n_turns = 2000
 ####
 
 ## setup xsuite model
