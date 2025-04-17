@@ -82,10 +82,11 @@ new_row = {'x_DA' : x_grid_da, 'DA' : da, 'DA_area' : da_area,
              'n_turns' : n_turns, 'timestamp' : pendulum.now().timestamp()
              }
 
-with ProtectFile(fname, 'r+', wait=1) as pf:
-    df = pd.read_parquet(fname)
+with ProtectFile(fname, 'rb+', wait=1) as pf:
+    df = pd.read_parquet(pf)
     df.loc[len(df)] = new_row.values()
-    df.to_parquet(fname)
+    pf.seek(0)
+    df.to_parquet(pf)
 
 if args.plot:
     plt.show()
